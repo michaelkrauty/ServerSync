@@ -38,7 +38,7 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
     @EventHandler
     public void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
         JsonObject obj = new JsonObject();
-        obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
+        obj.addProperty("player", event.getPlayer().getName());
         obj.addProperty("message", event.getMessage());
         bungee.out.println(obj);
         event.setCancelled(true);
