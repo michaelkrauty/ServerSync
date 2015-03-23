@@ -1,0 +1,15 @@
+name: ServerSync
+version: 1.0
+author: michaelkrauty
+main: me.michaelkrauty.ServerSync.Main
+commands:
+  serversync:
+    usage: /ss
+    aliases: ss
+  channel:
+    usage: /channel
+  nickname:
+    usage: /nickname
+    aliases: nick
+  realname:
+    usage: /realname
