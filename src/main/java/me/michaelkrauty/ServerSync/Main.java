@@ -1,6 +1,9 @@
 package me.michaelkrauty.ServerSync;
 
 import com.google.gson.JsonObject;
+import me.michaelkrauty.ServerSync.commands.BanCommand;
+import me.michaelkrauty.ServerSync.commands.NicknameCommand;
+import me.michaelkrauty.ServerSync.commands.RealnameCommand;
 import me.michaelkrauty.ServerSync.config.ConfigFile;
 import me.michaelkrauty.ServerSync.connection.BungeeConnector;
 import org.bukkit.command.Command;
@@ -33,11 +36,15 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
         config = new ConfigFile(this);
         bungee = new BungeeConnector(this);
         sql = new SQLConnector(this);
+        getServer().getPluginCommand("ban").setExecutor(new BanCommand(this));
+        getServer().getPluginCommand("nickname").setExecutor(new NicknameCommand(this));
+        getServer().getPluginCommand("realname").setExecutor(new RealnameCommand(this));
     }
 
     @EventHandler
     public void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
         JsonObject obj = new JsonObject();
+        obj.addProperty("action", "chat");
         obj.addProperty("player", event.getPlayer().getName());
         obj.addProperty("message", event.getMessage());
         bungee.out.println(obj);

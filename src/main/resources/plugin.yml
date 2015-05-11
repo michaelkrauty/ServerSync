@@ -7,9 +7,15 @@ commands:
     usage: /ss
     aliases: ss
   channel:
-    usage: /channel
+    usage: /channel <channel>
   nickname:
-    usage: /nickname
+    usage: /nickname <nickname>
     aliases: nick
   realname:
-    usage: /realname
+    usage: /realname <nickname>
+  ban:
+    usage: /ban <player> [reason]
+  tempban:
+    usage: /tempban <player> <duration> [reason]
+  mute:
+    usage: /mute <player> <duration> [reason]
