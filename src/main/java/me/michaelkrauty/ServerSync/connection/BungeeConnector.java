@@ -53,14 +53,17 @@ public class BungeeConnector implements Runnable {
                     main.getLogger().info("DATA: " + input);
                     JsonObject obj = new JsonParser().parse(input).getAsJsonObject();
                     String action = obj.get("action").getAsString();
-                    if (action.equalsIgnoreCase("chat")) {
+                    if (action.equalsIgnoreCase("log")) {
+                        main.getLogger().info(obj.get("message").getAsString());
+                    } else if (action.equalsIgnoreCase("chat")) {
                         for (Player player : main.getServer().getOnlinePlayers())
                             player.sendMessage(obj.get("message").getAsString().replace('&', ChatColor.COLOR_CHAR));
                         main.getLogger().info("[CHAT] " + obj.get("message").getAsString());
-                    } else if (action.equalsIgnoreCase("realname")) {
-                        for (Player player : main.getServer().getOnlinePlayers())
-                            if (player.getName().equals(obj.get("player").getAsString()))
-                                player.sendMessage(obj.get("target").getAsString() + "'s real name is " + obj.get("realname").getAsString());
+                    } else if (action.equalsIgnoreCase("ban")) {
+                        //Player player = main.getServer().getPlayer(obj.get("player").getAsString());
+                    } else if (action.equalsIgnoreCase("kick")) {
+                        Player player = main.getServer().getPlayer(obj.get("player").getAsString());
+                        player.kickPlayer(obj.get("reason").getAsString());
                     } else {
                         Player player = main.getServer().getPlayer(obj.get("player").getAsString());
                     }

@@ -19,39 +19,22 @@ public class NicknameCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        if (args.length < 1) {
+        if (args.length > 1) {
             sender.sendMessage(cmd.getUsage());
             return true;
         }
         if (!(sender instanceof Player))
             return true;
+
         Player player = (Player) sender;
         JsonObject obj = new JsonObject();
         obj.addProperty("action", "nickname");
+        obj.addProperty("player", player.getName());
 
-        String name;
-        if (main.getServer().getPlayer(args[0]) != null) {
-            obj.addProperty("player", main.getServer().getPlayer(args[0]).getName());
-            name = args[1] + " ";
-            for (int i = 2; i < args.length; i++)
-                name += args[i] + " ";
-            name = name.trim();
-        } else {
-            obj.addProperty("player", player.getName());
-            name = args[0] + " ";
-            for (int i = 1; i < args.length; i++)
-                name += args[i] + " ";
-            main.getLogger().info(name);
-            name = name.trim();
-            main.getLogger().info(name);
-        }
-
-        obj.addProperty("nickname", name);
-        main.bungee.out.println(obj);
-        if (name.equalsIgnoreCase("off"))
-            sender.sendMessage("You no longer have a nickname.");
-        else
-            sender.sendMessage("Your nickname is now " + name);
+        String name = args[2];
+        for (int i = 0; i < args.length; i++)
+            name += args[i + 2] + " ";
+        obj.addProperty("nickname", name.trim());
         return true;
     }
 }

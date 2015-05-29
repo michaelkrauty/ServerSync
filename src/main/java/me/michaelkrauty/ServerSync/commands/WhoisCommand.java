@@ -6,13 +6,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 /**
- * Created by micha_000 on 4/3/2015.
+ * Created by micha_000 on 5/14/2015.
  */
-public class TempbanCommand implements CommandExecutor {
+public class WhoisCommand implements CommandExecutor {
 
     private final Main main;
 
-    public TempbanCommand(Main main) {
+    public WhoisCommand(Main main) {
         this.main = main;
     }
 

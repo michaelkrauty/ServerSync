@@ -2,6 +2,7 @@ name: ServerSync
 version: 1.0
 author: michaelkrauty
 main: me.michaelkrauty.ServerSync.Main
+depend: [Vault]
 commands:
   serversync:
     usage: /ss
@@ -16,6 +17,6 @@ commands:
   ban:
     usage: /ban <player> [reason]
   tempban:
-    usage: /tempban <player> <duration> [reason]
+    usage: /tempban <player> <seconds> [reason]
   mute:
-    usage: /mute <player> <duration> [reason]
+    usage: /mute <player> <seconds> [reason]
