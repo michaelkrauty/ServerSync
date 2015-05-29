@@ -7,14 +7,12 @@ import me.michaelkrauty.ServerSync.commands.RealnameCommand;
 import me.michaelkrauty.ServerSync.commands.TempbanCommand;
 import me.michaelkrauty.ServerSync.config.ConfigFile;
 import me.michaelkrauty.ServerSync.connection.BungeeConnector;
-import net.milkbowl.vault.chat.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -24,7 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Main extends JavaPlugin implements Listener, CommandExecutor {
 
-    public static Chat chat;
+    //public static Chat chat;
     public ConfigFile config;
     public BungeeConnector bungee;
 
@@ -39,10 +37,7 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
         config = new ConfigFile(this);
         bungee = new BungeeConnector(this);
         initCommands();
-        if (setupChat())
-            getLogger().info("Chat setup was successful");
-        else
-            getLogger().severe("or not");
+        //setupChat();
     }
 
     private void initCommands() {
@@ -59,15 +54,14 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
         obj.addProperty("action", 0);
         obj.addProperty("player", event.getPlayer().getName());
         obj.addProperty("message", event.getMessage());
-        getLogger().info(chat.toString());
-        if (chat.getPlayerPrefix(event.getPlayer()) != null)
+        /*if (chat.getPlayerPrefix(event.getPlayer()) != null)
             obj.addProperty("prefix", chat.getPlayerPrefix(event.getPlayer()));
         else
             obj.addProperty("prefix", "");
         if (chat.getPlayerSuffix(event.getPlayer()) != null)
             obj.addProperty("suffix", chat.getPlayerSuffix(event.getPlayer()));
         else
-            obj.addProperty("suffix", "");
+            obj.addProperty("suffix", "");*/
         bungee.out.println(obj);
         event.setCancelled(true);
     }
@@ -88,12 +82,12 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
         return true;
     }
 
-    private boolean setupChat() {
+    /*private boolean setupChat() {
         RegisteredServiceProvider<Chat> chatProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
         if (chatProvider != null) {
             chat = chatProvider.getProvider();
         }
 
         return (chat != null);
-    }
+    }*/
 }
