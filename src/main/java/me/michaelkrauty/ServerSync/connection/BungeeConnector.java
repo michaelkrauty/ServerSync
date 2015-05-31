@@ -56,8 +56,13 @@ public class BungeeConnector implements Runnable {
                     if (action.equalsIgnoreCase("log")) {
                         main.getLogger().info(obj.get("message").getAsString());
                     } else if (action.equalsIgnoreCase("chat")) {
-                        for (Player player : main.getServer().getOnlinePlayers())
-                            player.sendMessage(obj.get("message").getAsString().replace('&', ChatColor.COLOR_CHAR));
+                        for (Player player : main.getServer().getOnlinePlayers()) {
+
+                            player.sendMessage("");
+                            player.sendMessage(obj.get("message").getAsString().replace('&', ChatColor.COLOR_CHAR)
+
+                            );
+                        }
                         main.getLogger().info("[CHAT] " + obj.get("message").getAsString());
                     } else if (action.equalsIgnoreCase("ban")) {
                         //Player player = main.getServer().getPlayer(obj.get("player").getAsString());

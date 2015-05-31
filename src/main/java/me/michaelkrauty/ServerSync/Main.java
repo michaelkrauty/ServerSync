@@ -51,7 +51,7 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
     @EventHandler
     public void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
         JsonObject obj = new JsonObject();
-        obj.addProperty("action", 0);
+        obj.addProperty("action", "chat");
         obj.addProperty("player", event.getPlayer().getName());
         obj.addProperty("message", event.getMessage());
         /*if (chat.getPlayerPrefix(event.getPlayer()) != null)
